@@ -67,5 +67,32 @@ export const appointmentsAPI = {
     api.patch(`/appointments/${appointmentId}/status`, { status }),
 };
 
+// Admin API
+export const adminAPI = {
+  getStats: () => api.get('/admin/stats'),
+  getUsers: () => api.get('/admin/users'),
+  getAppointments: () => api.get('/admin/appointments'),
+  updateAppointmentStatus: (appointmentId, status) =>
+    api.patch(`/admin/appointments/${appointmentId}/status`, { status }),
+  deleteAppointment: (appointmentId) =>
+    api.delete(`/admin/appointments/${appointmentId}`),
+  getDoctors: () => api.get('/admin/doctors'),
+  createDoctor: (name, specialty, workingHoursStart, workingHoursEnd) =>
+    api.post('/admin/doctors', {
+      name,
+      specialty,
+      working_hours_start: workingHoursStart,
+      working_hours_end: workingHoursEnd,
+    }),
+  updateDoctor: (doctorId, name, specialty, workingHoursStart, workingHoursEnd) =>
+    api.put(`/admin/doctors/${doctorId}`, {
+      name,
+      specialty,
+      working_hours_start: workingHoursStart,
+      working_hours_end: workingHoursEnd,
+    }),
+  deleteDoctor: (doctorId) => api.delete(`/admin/doctors/${doctorId}`),
+};
+
 export default api;
 

@@ -113,6 +113,14 @@ const Appointments = () => {
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <h1 className="text-3xl font-bold text-gray-800">Book Appointment</h1>
             <div className="flex gap-3">
+              {user?.role === 'admin' && (
+                <button
+                  onClick={() => navigate('/admin')}
+                  className="px-6 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition"
+                >
+                  Admin Dashboard
+                </button>
+              )}
               <button
                 onClick={() => navigate('/doctors')}
                 className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 transition"

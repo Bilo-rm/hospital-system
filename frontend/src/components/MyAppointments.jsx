@@ -97,6 +97,14 @@ const MyAppointments = () => {
               <p className="text-gray-600 mt-1">Manage your appointments</p>
             </div>
             <div className="flex gap-3">
+              {user?.role === 'admin' && (
+                <button
+                  onClick={() => navigate('/admin')}
+                  className="px-6 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition"
+                >
+                  Admin Dashboard
+                </button>
+              )}
               <button
                 onClick={() => navigate('/doctors')}
                 className="px-6 py-2 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition"

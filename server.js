@@ -4,6 +4,7 @@ const cors = require('cors');
 const authRoutes = require('./routes/auth');
 const doctorsRoutes = require('./routes/doctors');
 const appointmentsRoutes = require('./routes/appointments');
+const adminRoutes = require('./routes/admin');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -21,7 +22,8 @@ app.get('/', (req, res) => {
     endpoints: {
       auth: '/api/auth',
       doctors: '/api/doctors',
-      appointments: '/api/appointments'
+      appointments: '/api/appointments',
+      admin: '/api/admin'
     }
   });
 });
@@ -30,6 +32,7 @@ app.get('/', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/doctors', doctorsRoutes);
 app.use('/api/appointments', appointmentsRoutes);
+app.use('/api/admin', adminRoutes);
 
 // 404 handler
 app.use((req, res) => {

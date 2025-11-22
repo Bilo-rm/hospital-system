@@ -47,7 +47,13 @@ const Login = () => {
       }
 
       if (result.success) {
-        navigate('/doctors');
+        // Redirect admin users to admin dashboard
+        const userData = JSON.parse(localStorage.getItem('user') || '{}');
+        if (userData.role === 'admin') {
+          navigate('/admin');
+        } else {
+          navigate('/doctors');
+        }
       } else {
         setError(result.error);
       }

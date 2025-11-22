@@ -14,6 +14,7 @@ db.serialize(() => {
       username TEXT UNIQUE NOT NULL,
       email TEXT UNIQUE NOT NULL,
       password TEXT NOT NULL,
+      role TEXT DEFAULT 'user',
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )
   `);
@@ -70,6 +71,26 @@ db.serialize(() => {
   });
 
   stmt.finalize();
+
+  // Create default admin user (password: admin123)
+  bcrypt.hash('admin123', 10, (err, hashedPassword) => {
+    if (err) {
+      console.error('Error hashing admin password:', err);
+    } else {
+      db.run(`
+        INSERT OR IGNORE INTO users (username, email, password, role)
+        VALUES ('admin', 'admin@hospital.com', ?, 'admin')
+      `, [hashedPassword], (err) => {
+        if (err) {
+          console.error('Error creating admin user:', err);
+        } else {
+          console.log('Default admin user created:');
+          console.log('  Email: admin@hospital.com');
+          console.log('  Password: admin123');
+        }
+      });
+    }
+  });
 
   console.log('Database initialized successfully!');
   console.log('Sample doctors added.');

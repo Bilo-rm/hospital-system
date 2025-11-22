@@ -25,9 +25,12 @@ router.post('/signup', validateSignup, async (req, res) => {
       [username, email, hashedPassword]
     );
 
+    // Get user role (default to 'user')
+    const userRole = 'user';
+
     // Generate JWT token
     const token = jwt.sign(
-      { id: result.id, username, email },
+      { id: result.id, username, email, role: userRole },
       process.env.JWT_SECRET,
       { expiresIn: '24h' }
     );
@@ -38,7 +41,8 @@ router.post('/signup', validateSignup, async (req, res) => {
       user: {
         id: result.id,
         username,
-        email
+        email,
+        role: userRole
       }
     });
   } catch (error) {
@@ -64,9 +68,12 @@ router.post('/login', validateLogin, async (req, res) => {
       return res.status(401).json({ error: 'Invalid email or password' });
     }
 
+    // Get user role (default to 'user' if not set)
+    const userRole = user.role || 'user';
+
     // Generate JWT token
     const token = jwt.sign(
-      { id: user.id, username: user.username, email: user.email },
+      { id: user.id, username: user.username, email: user.email, role: userRole },
       process.env.JWT_SECRET,
       { expiresIn: '24h' }
     );
@@ -77,7 +84,8 @@ router.post('/login', validateLogin, async (req, res) => {
       user: {
         id: user.id,
         username: user.username,
-        email: user.email
+        email: user.email,
+        role: userRole
       }
     });
   } catch (error) {
