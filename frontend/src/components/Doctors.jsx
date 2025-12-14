@@ -7,6 +7,7 @@ const Doctors = () => {
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [selectedDepartment, setSelectedDepartment] = useState('all');
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
@@ -31,6 +32,14 @@ const Doctors = () => {
     logout();
     navigate('/login');
   };
+
+  // Get unique departments from doctors
+  const departments = ['all', ...new Set(doctors.map(doctor => doctor.specialty))];
+
+  // Filter doctors based on selected department
+  const filteredDoctors = selectedDepartment === 'all' 
+    ? doctors 
+    : doctors.filter(doctor => doctor.specialty === selectedDepartment);
 
   if (loading) {
     return (
@@ -88,14 +97,39 @@ const Doctors = () => {
           </div>
         )}
 
+        {/* Department Filter */}
+        <div className="bg-white rounded-2xl shadow-xl p-6 mb-6">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div>
+              <h2 className="text-xl font-semibold text-gray-800 mb-2">Filter by Department</h2>
+              <p className="text-sm text-gray-600">Select a department to view doctors</p>
+            </div>
+            <select
+              value={selectedDepartment}
+              onChange={(e) => setSelectedDepartment(e.target.value)}
+              className="px-4 py-2 border border-gray-300 rounded-lg text-gray-800 font-medium focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent min-w-[200px]"
+            >
+              {departments.map((dept) => (
+                <option key={dept} value={dept}>
+                  {dept === 'all' ? 'All Departments' : dept}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+
         {/* Doctors Grid */}
-        {doctors.length === 0 ? (
+        {filteredDoctors.length === 0 ? (
           <div className="bg-white rounded-2xl shadow-xl p-8 text-center">
-            <p className="text-gray-600">No doctors available at the moment.</p>
+            <p className="text-gray-600">
+              {selectedDepartment === 'all' 
+                ? 'No doctors available at the moment.' 
+                : `No doctors found in ${selectedDepartment} department.`}
+            </p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {doctors.map((doctor) => (
+            {filteredDoctors.map((doctor) => (
               <div
                 key={doctor.id}
                 className="bg-white rounded-2xl shadow-xl p-6 hover:shadow-2xl transition-shadow"
