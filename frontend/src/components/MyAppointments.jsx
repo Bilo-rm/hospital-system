@@ -80,14 +80,14 @@ const MyAppointments = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-white text-xl">Loading appointments...</div>
+      <div className="min-h-screen flex items-center justify-center bg-white">
+        <div className="text-gray-600 text-xl">Loading appointments...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen py-8 px-4">
+    <div className="min-h-screen py-8 px-4 bg-gray-50">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="bg-white rounded-2xl shadow-xl p-6 mb-8">
@@ -100,26 +100,26 @@ const MyAppointments = () => {
               {user?.role === 'admin' && (
                 <button
                   onClick={() => navigate('/admin')}
-                  className="px-6 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition"
+                  className="px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition shadow-sm"
                 >
                   Admin Dashboard
                 </button>
               )}
               <button
                 onClick={() => navigate('/doctors')}
-                className="px-6 py-2 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition"
+                className="px-6 py-2 bg-teal-600 text-white rounded-lg font-semibold hover:bg-teal-700 transition shadow-sm"
               >
                 View Doctors
               </button>
               <button
                 onClick={() => navigate('/appointments')}
-                className="px-6 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition"
+                className="px-6 py-2 bg-slate-700 text-white rounded-lg font-semibold hover:bg-slate-800 transition shadow-sm"
               >
                 Book New
               </button>
               <button
                 onClick={logout}
-                className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 transition"
+                className="px-6 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg font-semibold hover:bg-gray-50 transition shadow-sm"
               >
                 Logout
               </button>
@@ -136,8 +136,8 @@ const MyAppointments = () => {
                 onClick={() => setFilter(status)}
                 className={`px-4 py-2 rounded-lg font-semibold transition ${
                   filter === status
-                    ? 'bg-purple-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'bg-teal-600 text-white shadow-sm'
+                    : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 shadow-sm'
                 }`}
               >
                 {status.charAt(0).toUpperCase() + status.slice(1)} 
@@ -169,7 +169,7 @@ const MyAppointments = () => {
             {filter === 'all' && (
               <button
                 onClick={() => navigate('/appointments')}
-                className="mt-4 px-6 py-2 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition"
+                className="mt-4 px-6 py-2 bg-teal-600 text-white rounded-lg font-semibold hover:bg-teal-700 transition shadow-sm"
               >
                 Book Your First Appointment
               </button>
@@ -204,7 +204,7 @@ const MyAppointments = () => {
                       <p className="text-gray-800 font-semibold">
                         {appointment.doctor.name}
                       </p>
-                      <p className="text-purple-600">{appointment.doctor.specialty}</p>
+                      <p className="text-teal-600">{appointment.doctor.specialty}</p>
                     </div>
                     <div>
                       <p className="text-gray-600">Date & Time</p>
@@ -225,7 +225,7 @@ const MyAppointments = () => {
                     {appointment.status !== 'completed' && (
                       <button
                         onClick={() => handleStatusChange(appointment.id, 'completed')}
-                        className="flex-1 px-3 py-2 bg-green-600 text-white rounded-lg text-sm font-semibold hover:bg-green-700 transition"
+                        className="flex-1 px-3 py-2 bg-emerald-600 text-white rounded-lg text-sm font-semibold hover:bg-emerald-700 transition shadow-sm"
                       >
                         Mark Complete
                       </button>
@@ -233,7 +233,7 @@ const MyAppointments = () => {
                     {appointment.status !== 'cancelled' && (
                       <button
                         onClick={() => handleStatusChange(appointment.id, 'cancelled')}
-                        className="flex-1 px-3 py-2 bg-red-600 text-white rounded-lg text-sm font-semibold hover:bg-red-700 transition"
+                        className="flex-1 px-3 py-2 bg-rose-600 text-white rounded-lg text-sm font-semibold hover:bg-rose-700 transition shadow-sm"
                       >
                         Cancel
                       </button>
@@ -241,7 +241,7 @@ const MyAppointments = () => {
                     {(appointment.status === 'completed' || appointment.status === 'cancelled') && (
                       <button
                         onClick={() => handleStatusChange(appointment.id, 'pending')}
-                        className="flex-1 px-3 py-2 bg-yellow-600 text-white rounded-lg text-sm font-semibold hover:bg-yellow-700 transition"
+                        className="flex-1 px-3 py-2 bg-amber-600 text-white rounded-lg text-sm font-semibold hover:bg-amber-700 transition shadow-sm"
                       >
                         Reset to Pending
                       </button>

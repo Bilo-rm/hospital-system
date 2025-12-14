@@ -106,7 +106,7 @@ const Appointments = () => {
   const timeSlots = selectedDoctorData ? generateTimeSlots() : [];
 
   return (
-    <div className="min-h-screen py-8 px-4">
+    <div className="min-h-screen py-8 px-4 bg-gray-50">
       <div className="max-w-2xl mx-auto">
         {/* Header */}
         <div className="bg-white rounded-2xl shadow-xl p-6 mb-8">
@@ -116,26 +116,26 @@ const Appointments = () => {
               {user?.role === 'admin' && (
                 <button
                   onClick={() => navigate('/admin')}
-                  className="px-6 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition"
+                  className="px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition shadow-sm"
                 >
                   Admin Dashboard
                 </button>
               )}
               <button
                 onClick={() => navigate('/doctors')}
-                className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 transition"
+                className="px-6 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg font-semibold hover:bg-gray-50 transition shadow-sm"
               >
                 View Doctors
               </button>
               <button
                 onClick={() => navigate('/my-appointments')}
-                className="px-6 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition"
+                className="px-6 py-2 bg-slate-700 text-white rounded-lg font-semibold hover:bg-slate-800 transition shadow-sm"
               >
                 My Appointments
               </button>
               <button
                 onClick={logout}
-                className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 transition"
+                className="px-6 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg font-semibold hover:bg-gray-50 transition shadow-sm"
               >
                 Logout
               </button>
@@ -158,7 +158,7 @@ const Appointments = () => {
                   setSelectedDoctor(e.target.value);
                   setAppointmentTime('');
                 }}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition bg-white"
                 required
               >
                 <option value="">Choose a doctor...</option>
@@ -185,7 +185,7 @@ const Appointments = () => {
                 id="patientName"
                 value={patientName}
                 onChange={(e) => setPatientName(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition bg-white"
                 placeholder="Enter patient name"
                 required
               />
@@ -205,7 +205,7 @@ const Appointments = () => {
                   setAppointmentTime('');
                 }}
                 min={getMinDate()}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition bg-white"
                 required
               />
               <p className="mt-2 text-sm text-gray-600">
@@ -223,7 +223,7 @@ const Appointments = () => {
                   id="appointmentTime"
                   value={appointmentTime}
                   onChange={(e) => setAppointmentTime(e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition bg-white"
                   required
                   disabled={!appointmentDate}
                 >
@@ -263,7 +263,7 @@ const Appointments = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-3 rounded-lg font-semibold hover:from-purple-700 hover:to-indigo-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-teal-600 text-white py-3 rounded-lg font-semibold hover:bg-teal-700 transition disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
             >
               {loading ? 'Booking Appointment...' : 'Book Appointment'}
             </button>

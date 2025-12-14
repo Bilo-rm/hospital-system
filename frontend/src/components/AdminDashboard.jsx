@@ -130,13 +130,13 @@ const AdminDashboard = () => {
   const getStatusColor = (status) => {
     switch (status) {
       case 'completed':
-        return 'bg-green-100 text-green-800';
+        return 'bg-emerald-100 text-emerald-800 border-emerald-200';
       case 'cancelled':
-        return 'bg-red-100 text-red-800';
+        return 'bg-rose-100 text-rose-800 border-rose-200';
       case 'pending':
-        return 'bg-yellow-100 text-yellow-800';
+        return 'bg-amber-100 text-amber-800 border-amber-200';
       default:
-        return 'bg-gray-100 text-gray-800';
+        return 'bg-gray-100 text-gray-800 border-gray-200';
     }
   };
 
@@ -145,7 +145,7 @@ const AdminDashboard = () => {
   }
 
   return (
-    <div className="min-h-screen py-8 px-4">
+    <div className="min-h-screen py-8 px-4 bg-gray-50">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="bg-white rounded-2xl shadow-xl p-6 mb-8">
@@ -157,13 +157,13 @@ const AdminDashboard = () => {
             <div className="flex gap-3">
               <button
                 onClick={() => navigate('/doctors')}
-                className="px-6 py-2 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition"
+                className="px-6 py-2 bg-teal-600 text-white rounded-lg font-semibold hover:bg-teal-700 transition shadow-sm"
               >
                 User View
               </button>
               <button
                 onClick={logout}
-                className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 transition"
+                className="px-6 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg font-semibold hover:bg-gray-50 transition shadow-sm"
               >
                 Logout
               </button>
@@ -180,8 +180,8 @@ const AdminDashboard = () => {
                 onClick={() => setActiveTab(tab)}
                 className={`px-4 py-2 rounded-lg font-semibold transition ${
                   activeTab === tab
-                    ? 'bg-purple-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'bg-teal-600 text-white shadow-sm'
+                    : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 shadow-sm'
                 }`}
               >
                 {tab.charAt(0).toUpperCase() + tab.slice(1)}
@@ -209,7 +209,7 @@ const AdminDashboard = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div className="bg-white rounded-2xl shadow-xl p-6">
                   <h3 className="text-lg font-semibold text-gray-600 mb-2">Total Users</h3>
-                  <p className="text-4xl font-bold text-purple-600">{stats.totalUsers}</p>
+                  <p className="text-4xl font-bold text-blue-600">{stats.totalUsers}</p>
                 </div>
                 <div className="bg-white rounded-2xl shadow-xl p-6">
                   <h3 className="text-lg font-semibold text-gray-600 mb-2">Total Doctors</h3>
@@ -217,19 +217,19 @@ const AdminDashboard = () => {
                 </div>
                 <div className="bg-white rounded-2xl shadow-xl p-6">
                   <h3 className="text-lg font-semibold text-gray-600 mb-2">Total Appointments</h3>
-                  <p className="text-4xl font-bold text-green-600">{stats.totalAppointments}</p>
+                  <p className="text-4xl font-bold text-emerald-600">{stats.totalAppointments}</p>
                 </div>
                 <div className="bg-white rounded-2xl shadow-xl p-6">
                   <h3 className="text-lg font-semibold text-gray-600 mb-2">Pending</h3>
-                  <p className="text-4xl font-bold text-yellow-600">{stats.pendingAppointments}</p>
+                  <p className="text-4xl font-bold text-amber-600">{stats.pendingAppointments}</p>
                 </div>
                 <div className="bg-white rounded-2xl shadow-xl p-6">
                   <h3 className="text-lg font-semibold text-gray-600 mb-2">Completed</h3>
-                  <p className="text-4xl font-bold text-green-600">{stats.completedAppointments}</p>
+                  <p className="text-4xl font-bold text-emerald-600">{stats.completedAppointments}</p>
                 </div>
                 <div className="bg-white rounded-2xl shadow-xl p-6">
                   <h3 className="text-lg font-semibold text-gray-600 mb-2">Cancelled</h3>
-                  <p className="text-4xl font-bold text-red-600">{stats.cancelledAppointments}</p>
+                  <p className="text-4xl font-bold text-rose-600">{stats.cancelledAppointments}</p>
                 </div>
               </div>
             )}
@@ -250,7 +250,7 @@ const AdminDashboard = () => {
                     </thead>
                     <tbody>
                       {users.map((u) => (
-                        <tr key={u.id} className="border-b hover:bg-gray-50">
+                        <tr key={u.id} className="border-b border-gray-200 hover:bg-gray-50">
                           <td className="p-3">{u.id}</td>
                           <td className="p-3">{u.username}</td>
                           <td className="p-3">{u.email}</td>
@@ -269,11 +269,11 @@ const AdminDashboard = () => {
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">All Appointments</h2>
                 <div className="space-y-4">
                   {appointments.map((apt) => (
-                    <div key={apt.id} className="border rounded-lg p-4 hover:shadow-md transition">
+                    <div key={apt.id} className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition bg-white">
                       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                         <div className="flex-1">
                           <div className="flex items-center gap-3 mb-2">
-                            <span className={`px-3 py-1 rounded-full text-xs font-semibold ${getStatusColor(apt.status)}`}>
+                            <span className={`px-3 py-1 rounded-full text-xs font-semibold border ${getStatusColor(apt.status)}`}>
                               {apt.status}
                             </span>
                             <span className="font-semibold text-gray-800">{apt.patientName}</span>
@@ -294,7 +294,7 @@ const AdminDashboard = () => {
                           </select>
                           <button
                             onClick={() => handleDeleteAppointment(apt.id)}
-                            className="px-4 py-2 bg-red-600 text-white rounded-lg text-sm font-semibold hover:bg-red-700 transition"
+                            className="px-4 py-2 bg-rose-600 text-white rounded-lg text-sm font-semibold hover:bg-rose-700 transition shadow-sm"
                           >
                             Delete
                           </button>
@@ -317,21 +317,21 @@ const AdminDashboard = () => {
                       setEditingDoctor(null);
                       setDoctorForm({ name: '', specialty: '', working_hours_start: '', working_hours_end: '' });
                     }}
-                    className="px-4 py-2 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition"
+                    className="px-4 py-2 bg-teal-600 text-white rounded-lg font-semibold hover:bg-teal-700 transition shadow-sm"
                   >
                     Add Doctor
                   </button>
                 </div>
 
                 {showDoctorForm && (
-                  <form onSubmit={handleDoctorSubmit} className="mb-6 p-4 border rounded-lg bg-gray-50">
+                  <form onSubmit={handleDoctorSubmit} className="mb-6 p-4 border border-gray-200 rounded-lg bg-gray-50">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <input
                         type="text"
                         placeholder="Doctor Name"
                         value={doctorForm.name}
                         onChange={(e) => setDoctorForm({ ...doctorForm, name: e.target.value })}
-                        className="px-4 py-2 border rounded-lg"
+                        className="px-4 py-2 border border-gray-300 rounded-lg bg-white"
                         required
                       />
                       <input
@@ -339,7 +339,7 @@ const AdminDashboard = () => {
                         placeholder="Specialty"
                         value={doctorForm.specialty}
                         onChange={(e) => setDoctorForm({ ...doctorForm, specialty: e.target.value })}
-                        className="px-4 py-2 border rounded-lg"
+                        className="px-4 py-2 border border-gray-300 rounded-lg bg-white"
                         required
                       />
                       <input
@@ -347,7 +347,7 @@ const AdminDashboard = () => {
                         placeholder="Start Time"
                         value={doctorForm.working_hours_start}
                         onChange={(e) => setDoctorForm({ ...doctorForm, working_hours_start: e.target.value })}
-                        className="px-4 py-2 border rounded-lg"
+                        className="px-4 py-2 border border-gray-300 rounded-lg bg-white"
                         required
                       />
                       <input
@@ -355,14 +355,14 @@ const AdminDashboard = () => {
                         placeholder="End Time"
                         value={doctorForm.working_hours_end}
                         onChange={(e) => setDoctorForm({ ...doctorForm, working_hours_end: e.target.value })}
-                        className="px-4 py-2 border rounded-lg"
+                        className="px-4 py-2 border border-gray-300 rounded-lg bg-white"
                         required
                       />
                     </div>
                     <div className="flex gap-2 mt-4">
                       <button
                         type="submit"
-                        className="px-4 py-2 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition"
+                        className="px-4 py-2 bg-teal-600 text-white rounded-lg font-semibold hover:bg-teal-700 transition shadow-sm"
                       >
                         {editingDoctor ? 'Update' : 'Create'} Doctor
                       </button>
@@ -372,7 +372,7 @@ const AdminDashboard = () => {
                           setShowDoctorForm(false);
                           setEditingDoctor(null);
                         }}
-                        className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 transition"
+                        className="px-4 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg font-semibold hover:bg-gray-50 transition shadow-sm"
                       >
                         Cancel
                       </button>
@@ -382,22 +382,22 @@ const AdminDashboard = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {doctors.map((doctor) => (
-                    <div key={doctor.id} className="border rounded-lg p-4 hover:shadow-md transition">
+                    <div key={doctor.id} className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition bg-white">
                       <h3 className="font-bold text-lg mb-2">{doctor.name}</h3>
-                      <p className="text-purple-600 mb-2">{doctor.specialty}</p>
+                      <p className="text-teal-600 mb-2">{doctor.specialty}</p>
                       <p className="text-sm text-gray-600 mb-4">
                         Hours: {doctor.working_hours_start} - {doctor.working_hours_end}
                       </p>
                       <div className="flex gap-2">
                         <button
                           onClick={() => handleEditDoctor(doctor)}
-                          className="flex-1 px-3 py-2 bg-blue-600 text-white rounded-lg text-sm font-semibold hover:bg-blue-700 transition"
+                          className="flex-1 px-3 py-2 bg-blue-600 text-white rounded-lg text-sm font-semibold hover:bg-blue-700 transition shadow-sm"
                         >
                           Edit
                         </button>
                         <button
                           onClick={() => handleDeleteDoctor(doctor.id)}
-                          className="flex-1 px-3 py-2 bg-red-600 text-white rounded-lg text-sm font-semibold hover:bg-red-700 transition"
+                          className="flex-1 px-3 py-2 bg-rose-600 text-white rounded-lg text-sm font-semibold hover:bg-rose-700 transition shadow-sm"
                         >
                           Delete
                         </button>

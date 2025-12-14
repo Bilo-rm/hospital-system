@@ -43,14 +43,14 @@ const Doctors = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-white text-xl">Loading doctors...</div>
+      <div className="min-h-screen flex items-center justify-center bg-white">
+        <div className="text-gray-600 text-xl">Loading doctors...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen py-8 px-4">
+    <div className="min-h-screen py-8 px-4 bg-gray-50">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="bg-white rounded-2xl shadow-xl p-6 mb-8">
@@ -63,26 +63,26 @@ const Doctors = () => {
               {user?.role === 'admin' && (
                 <button
                   onClick={() => navigate('/admin')}
-                  className="px-6 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition"
+                  className="px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition shadow-sm"
                 >
                   Admin Dashboard
                 </button>
               )}
               <button
                 onClick={() => navigate('/my-appointments')}
-                className="px-6 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition"
+                className="px-6 py-2 bg-slate-700 text-white rounded-lg font-semibold hover:bg-slate-800 transition shadow-sm"
               >
                 My Appointments
               </button>
               <button
                 onClick={() => navigate('/appointments')}
-                className="px-6 py-2 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition"
+                className="px-6 py-2 bg-teal-600 text-white rounded-lg font-semibold hover:bg-teal-700 transition shadow-sm"
               >
                 Book Appointment
               </button>
               <button
                 onClick={handleLogout}
-                className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 transition"
+                className="px-6 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg font-semibold hover:bg-gray-50 transition shadow-sm"
               >
                 Logout
               </button>
@@ -107,7 +107,7 @@ const Doctors = () => {
             <select
               value={selectedDepartment}
               onChange={(e) => setSelectedDepartment(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg text-gray-800 font-medium focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent min-w-[200px]"
+              className="px-4 py-2 border border-gray-300 rounded-lg text-gray-800 font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent min-w-[200px] bg-white"
             >
               {departments.map((dept) => (
                 <option key={dept} value={dept}>
@@ -138,7 +138,7 @@ const Doctors = () => {
                   <h3 className="text-2xl font-bold text-gray-800 mb-2">
                     {doctor.name}
                   </h3>
-                  <p className="text-purple-600 font-semibold">{doctor.specialty}</p>
+                  <p className="text-teal-600 font-semibold">{doctor.specialty}</p>
                 </div>
                 <div className="border-t pt-4">
                   <p className="text-sm text-gray-600 mb-1">Working Hours</p>
@@ -148,7 +148,7 @@ const Doctors = () => {
                 </div>
                 <button
                   onClick={() => navigate('/appointments', { state: { doctorId: doctor.id } })}
-                  className="mt-4 w-full bg-purple-600 text-white py-2 rounded-lg font-semibold hover:bg-purple-700 transition"
+                  className="mt-4 w-full bg-teal-600 text-white py-2 rounded-lg font-semibold hover:bg-teal-700 transition shadow-sm"
                 >
                   Book Appointment
                 </button>
